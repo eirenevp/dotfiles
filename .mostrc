@@ -1,0 +1,9 @@
+color normal lightgray default
+color status brown brightgreen
+color underline blue default
+color overstrike magenta default
+
+setkey bob "g"
+setkey eob "G"
+setkey up "k"
+setkey down "j"
