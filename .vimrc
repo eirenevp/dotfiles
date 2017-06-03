@@ -22,6 +22,9 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'chiskempson/base16-vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'DrTom/fsharp-vim'
+Plugin 'scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
