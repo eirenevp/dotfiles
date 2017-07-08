@@ -27,7 +27,8 @@ export PATH="$PATH:/usr/local/mysql/bin/"
 export PATH="$PATH:/usr/local/Cellar/smlnj/110.72/libexec/bin"
 
 # Setup tomcat
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.5/Home
+# export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.5/Home
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 export CATALINA_HOME=/usr/local/tomcat
 
 #Custom commands inside
@@ -192,6 +193,9 @@ alias cpu="ps ux | awk 'NR > 1 {res += \$3} END { print \"Total %CPU:\",res }'"
 alias grep='grep --colour'
 alias egrep='egrep --colour'
 alias calc='noglob calc'
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 
 # fucking vim
 alias h="man"
