@@ -206,8 +206,16 @@ alias :q="toilet -f bigmono12 -F gay FACEPALM"
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 stty -ixon
 
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="~/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+export PATH="/home/s1690572/miniconda3/bin:$PATH"
+
+export TSS_DEBUG=5859
+
+
+
+

@@ -318,6 +318,10 @@ map <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> t
 
 map<leader>H :exec "vsplit ~/.vim/colors/" . g:colors_name . ".vim"<cr>
 
+map<leader>w :cnext<cr>
+" map <space>u :make<cr>
+" autocmd QuickFixCmdPost [^l]* nested cwindow
+" autocmd QuickFixCmdPost    l* nested lwindow
 " Clean up file
 function! StripWhitespace ()
   " Remove trailing whitespaces
@@ -340,9 +344,9 @@ function! CompileAndRun()
   silent! make %
   redraw!
   botright cwindow
-  if len(getqflist()) == 0
-    exec '!time ./a.out'
-  endif
+  " if len(getqflist()) == 0
+  "   exec '!time ./a.out'
+  " endif
 endfunction
 map <leader>c :call CompileAndRun()<cr>
 
@@ -350,6 +354,8 @@ map <leader>c :call CompileAndRun()<cr>
 map <leader>t :CtrlPTag<cr>
 map <leader>f :CtrlP<cr>
 map <leader>o <c-w>o<cr>
+
+map <leader><C-n> :NERDTreeToggle<CR>
 
 map <leader><leader> <C-^>
 " }}}
@@ -372,6 +378,3 @@ if &encoding == "utf-8"
 endif
 "}}}
 
-map <space>u :make<cr>
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
