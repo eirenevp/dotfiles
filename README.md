@@ -2,7 +2,7 @@
 
 1. Clone under your home directory:
 
-        $ git clone https://bitbucket.org/ychatz/dotfiles.git ~/dotfiles
+        $ git clone https://github.com/irenevp/dotfiles  ~/dotfiles
 
 2. Set-up the symbolic links:
 
