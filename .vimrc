@@ -1,37 +1,3 @@
-"Vundle (Plugins) {{{
-"---------------------------------------------------------------------------------
-set nocompatible
-filetype off
-" Set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" To install a plugin from a github repo add a line like:
-"   Plugin 'tpope/vim-fugitive'
-" and don't forget to restart vim and run `:PluginInstall`
-
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'b4winckler/vim-angry'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'DrTom/fsharp-vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'derekwyatt/vim-scala'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-
-filetype plugin indent on
-" }}}
 "General {{{
 "---------------------------------------------------------------------------------
 set backspace=indent,eol,start
@@ -52,8 +18,6 @@ set shiftwidth=4
 set expandtab
 set autoindent
 
-let base16colorspace=256
-
 " Encoding
 if exists("+encoding")
   set encoding=utf-8
@@ -61,7 +25,7 @@ endif
 
 " Folding
 set foldmethod=marker
-
+let base16colorspace=256 
 let &t_Co=256
 "" Interface
 if has("gui_running")
@@ -84,7 +48,7 @@ else
     let &t_Co=16
   endif
 
-  colorscheme base16-default-dark
+  colorscheme base16-default
   set background=dark
 
   " Enable the mouse
@@ -187,6 +151,52 @@ autocmd BufReadPost quickfix setlocal nocursorline
 " From http://vim.wikia.com/wiki/Always_keep_quickfix_window_at_specified_height
 au WinEnter * call MaximizeAndResizeQuickfix(10)
 
+" Python, PEP-008
+au BufRead,BufNewFile *.py,*.pyw set expandtab
+au BufRead,BufNewFile *.py,*.pyw set textwidth=139
+au BufRead,BufNewFile *.py,*.pyw set tabstop=4
+au BufRead,BufNewFile *.py,*.pyw set softtabstop=4
+au BufRead,BufNewFile *.py,*.pyw set shiftwidth=4
+au BufRead,BufNewFile *.py,*.pyw set autoindent
+" au BufRead,BufNewFile *.py,*.pyw match ExtraWhitespace /^\t\+/
+" au BufRead,BufNewFile *.py,*.pyw match ExtraWhitespace /\s\+$/
+au         BufNewFile *.py,*.pyw set fileformat=unix
+au BufRead,BufNewFile *.py,*.pyw let b:comment_leader = '#'
+
+" JS
+au BufRead,BufNewFile *.js set expandtab
+au BufRead,BufNewFile *.js set tabstop=4
+au BufRead,BufNewFile *.js set softtabstop=4
+au BufRead,BufNewFile *.js set shiftwidth=4
+au BufRead,BufNewFile *.js set autoindent
+" au BufRead,BufNewFile *.js match BadWhitespace /^\t\+/
+" au BufRead,BufNewFile *.js match BadWhitespace /\s\+$/
+au         BufNewFile *.js set fileformat=unix
+au BufRead,BufNewFile *.js let b:comment_leader = '//'
+
+" XML
+au BufRead,BufNewFile *.xml set expandtab
+au BufRead,BufNewFile *.xml set tabstop=4
+au BufRead,BufNewFile *.xml set softtabstop=4
+au BufRead,BufNewFile *.xml set shiftwidth=4
+au BufRead,BufNewFile *.xml set autoindent
+" au BufRead,BufNewFile *.xml match BadWhitespace /^\t\+/
+" au BufRead,BufNewFile *.xml match BadWhitespace /\s\+$/
+au         BufNewFile *.xml set fileformat=unix
+au BufRead,BufNewFile *.xml let b:comment_leader = '<!--'
+
+" HTML
+au BufRead,BufNewFile *.html set filetype=xml
+au BufRead,BufNewFile *.html set expandtab
+au BufRead,BufNewFile *.html set tabstop=4
+au BufRead,BufNewFile *.html set softtabstop=4
+au BufRead,BufNewFile *.html set shiftwidth=4
+au BufRead,BufNewFile *.html set autoindent
+" au BufRead,BufNewFile *.html match BadWhitespace /^\t\+/
+" au BufRead,BufNewFile *.html match BadWhitespace /\s\+$/
+au         BufNewFile *.html set fileformat=unix
+au BufRead,BufNewFile *.html let b:comment_leader = '<!--'
+
 " Maximize current window and set the quickfix window to the specified height.
 function MaximizeAndResizeQuickfix(quickfixHeight)
   " Redraw after executing the function.
@@ -240,8 +250,6 @@ function MaximizeAndResizeQuickfix(quickfixHeight)
   set ei-=WinEnter
   set nolazyredraw
 endfunction
-"}}}
-
 " }}}
 " Plugin Configuration {{{
 "---------------------------------------------------------------------------------
@@ -253,6 +261,7 @@ hi! CtrlPMatch ctermfg=9
 " Ignore certain filetypes
 set wildignore=*.o,*.out,*.class
 
+
 "Airline
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -263,6 +272,9 @@ let g:airline_right_sep=''
 let g:airline_symbols.branch = '⭠'
 let g:airline_symbols.readonly = '⭤'
 let g:airline_symbols.linenr = '⭡'
+
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
 " }}}
 " Leader key mappings {{{
 "---------------------------------------------------------------------------------
@@ -316,11 +328,7 @@ map <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> t
       \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
 
 map<leader>H :exec "vsplit ~/.vim/colors/" . g:colors_name . ".vim"<cr>
-
-map<leader>w :cnext<cr>
-" map <space>u :make<cr>
-" autocmd QuickFixCmdPost [^l]* nested cwindow
-" autocmd QuickFixCmdPost    l* nested lwindow
+map <leader>w :cnext<cr>
 " Clean up file
 function! StripWhitespace ()
   " Remove trailing whitespaces
@@ -336,6 +344,12 @@ map <leader>s :call StripWhitespace ()<cr>
 
 " Open .vimrc
 map <leader>v :e $MYVIMRC<cr>
+
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+let python_highlight_all=1
+syntax on
 
 " Save, compile and run files
 function! CompileAndRun()
@@ -353,8 +367,6 @@ map <leader>c :call CompileAndRun()<cr>
 map <leader>t :CtrlPTag<cr>
 map <leader>f :CtrlP<cr>
 map <leader>o <c-w>o<cr>
-
-map <leader><C-n> :NERDTreeToggle<CR>
 
 map <leader><leader> <C-^>
 " }}}
@@ -376,4 +388,3 @@ if &encoding == "utf-8"
   set langmap=ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz,¨:
 endif
 "}}}
-

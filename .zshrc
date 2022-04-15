@@ -2,15 +2,13 @@
 #---------------------------------------------------------------------------------
 
 # Set history
-HISTSIZE=1000000
+HISTSIZE=100000
 HISTFILE="$HOME/.history"
 SAVEHIST=$HISTSIZE
 setopt inc_append_history
 setopt share_history
 
 unsetopt nomatch
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 # Set default pager
 export PAGER=most
@@ -27,8 +25,7 @@ export PATH="$PATH:/usr/local/mysql/bin/"
 export PATH="$PATH:/usr/local/Cellar/smlnj/110.72/libexec/bin"
 
 # Setup tomcat
-# export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.5/Home
-export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+export JAVA_HOME=$(/usr/libexec/java_home)
 export CATALINA_HOME=/usr/local/tomcat
 
 #Custom commands inside
@@ -115,7 +112,7 @@ autoload -U colors
 colors
 setopt prompt_subst
 PROMPT='%{$fg[yellow]%}%c%{$fg[cyan]%}$(suspended_jobs)%{$fg[red]%}$(git_prompt_info)%{$fg[yellow]%} ⇢  %{$reset_color%}'
-RPROMPT='%{$fg_bold[red]%}iren@ed%{$reset_color%}'
+RPROMPT='%{$fg_bold[red]%}eirene%{$reset_color%}'
 # }}}
 # Custom commands {{{
 #---------------------------------------------------------------------------------
@@ -183,6 +180,7 @@ alias ...='cd ../..'
 alias t='touch'
 alias mv='nocorrect mv -i'
 alias mkdir='nocorrect mkdir'
+alias timeout='gtimeout'
 
 # misc
 alias duh='du -csh'
@@ -193,29 +191,57 @@ alias cpu="ps ux | awk 'NR > 1 {res += \$3} END { print \"Total %CPU:\",res }'"
 alias grep='grep --colour'
 alias egrep='egrep --colour'
 alias calc='noglob calc'
-
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+alias ctags="`brew --prefix`/bin/ctags"
 
 # fucking vim
 alias h="man"
+alias vi="vim"
 alias so="source ~/.zshrc"
 alias :q="toilet -f bigmono12 -F gay FACEPALM"
 # }}}
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=/usr/local/scala/bin:$PATH
+PATH=/opt/apache-maven-3.5.0/bin:$PATH
+PATH=/Users/iren/Library/Python/3.7/bin:$PATH
+# added by Miniconda3 installer
+# export PATH="/Users/iren/miniconda3/bin:$PATH"  # commented out by conda initialize
+export PATH="$HOME/.npm-packages/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/bin/cvs:$PATH"
+export PATH=$PATH:~/.local/bin
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export CVSROOT=:pserver:s1690572@www.inf.ed.ac.uk:/cvsroot
 stty -ixon
-
-export NVM_DIR="~/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
 
-export PATH="/home/s1690572/miniconda3/bin:$PATH"
+export PATH=$PATH:/opt/local/bin                                      iren
+export MANPATH=$MANPATH:/opt/local/share/man
+export INFOPATH=$INFOPATH:/opt/local/share/info
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export LEAN_PATH="$HOME/.elan/bin:$PATH"
 
-export TSS_DEBUG=5859
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/iren/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/iren/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/iren/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/iren/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
-
-
-
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
