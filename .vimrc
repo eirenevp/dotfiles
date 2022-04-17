@@ -149,7 +149,7 @@ autocmd BufReadPost quickfix setlocal nocursorline
 " Maximize the window after entering it, be sure to keep the quickfix window
 " at the specified height.
 " From http://vim.wikia.com/wiki/Always_keep_quickfix_window_at_specified_height
-au WinEnter * call MaximizeAndResizeQuickfix(10)
+au WinEnter * rall MaximizeAndResizeQuickfix(10)
 
 " Python, PEP-008
 au BufRead,BufNewFile *.py,*.pyw set expandtab
@@ -253,7 +253,6 @@ endfunction
 " }}}
 " Plugin Configuration {{{
 "---------------------------------------------------------------------------------
-
 "CtrlP configuration
 let g:ctrlp_max_height = 7
 hi! CtrlPMatch ctermfg=9

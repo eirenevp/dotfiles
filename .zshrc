@@ -203,9 +203,7 @@ alias :q="toilet -f bigmono12 -F gay FACEPALM"
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=/usr/local/scala/bin:$PATH
 PATH=/opt/apache-maven-3.5.0/bin:$PATH
-PATH=/Users/iren/Library/Python/3.7/bin:$PATH
 # added by Miniconda3 installer
-# export PATH="/Users/iren/miniconda3/bin:$PATH"  # commented out by conda initialize
 export PATH="$HOME/.npm-packages/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 # export PATH="/usr/local/opt/openssl/bin:$PATH"
@@ -224,7 +222,6 @@ export PATH=$PATH:/opt/local/bin                                      iren
 export MANPATH=$MANPATH:/opt/local/share/man
 export INFOPATH=$INFOPATH:/opt/local/share/info
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export LEAN_PATH="$HOME/.elan/bin:$PATH"
 
@@ -245,3 +242,4 @@ unset __conda_setup
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
